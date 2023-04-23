@@ -3,11 +3,11 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-family: 'Poppins', sans-serif;
 }
 
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -100,7 +100,7 @@ video {
 
 input {
   font-size: 100%;
-}
+} */
 
 
 /* 
