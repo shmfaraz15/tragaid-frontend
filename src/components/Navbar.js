@@ -35,7 +35,7 @@ export default function Navbar() {
     return (
 
         <nav className='NavbarItems'>
-            <h1 className='navbar-logo'>Truguide</h1>
+            <h1 className='navbar-logo'>Trueguide</h1>
             <div className='menu-icons' onClick={handleClick}>
                 <i className={clicked ? "fas fa-times" : 'fas fa-bars'}></i>
             </div>

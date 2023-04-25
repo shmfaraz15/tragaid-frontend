@@ -11,6 +11,9 @@ import OffBPlaceList from './components/OffBPlaceList';
 import FoodList from './components/FoodList';
 import Hotel from './components/Hotel';
 import OffBPlace from './components/OffBPlace';
+import RestaurantList from './components/RestaurantList';
+import Restaurant from './components/Restaurant';
+import ActivityList from './components/ActivityList';
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
               <Route path='/foodlist' element={<FoodList />} />
               <Route path='/hotel' element={<Hotel />} />
               <Route path='/offbeatplace' element={<OffBPlace />} />
+              <Route path='/restaurantlist' element={<RestaurantList />} />
+              <Route path='/restaurant' element={<Restaurant />} />
+              <Route path='/activitylist' element={<ActivityList />} />
             </Routes>
           </BrowserRouter>
         </div>

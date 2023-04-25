@@ -66,37 +66,36 @@ function Card({ image, title, category }) {
 const data = [
     {
         image:
-            "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/03/793f682aec8c3e49a7ebf834cace561a.jpg",
+            "https://images.thrillophilia.com/image/upload/s--fa2brs0D--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/491/original/1626069325_09jka9y6ihsjd9mn1iy2vzw7eva5__QMR5527.jpg.jpg",
         title: "Best forests to visit in North America",
         category: "nature"
     },
     {
         image:
-            "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/03/d8f3c0b85dacacf59959be1702b87d0b_1458110067_200_thumb.jpg",
+            "https://images.thrillophilia.com/image/upload/s--ft9NX1gF--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/492/original/1626094582_zuwk63ts7wgm1ko2dthk8uee3h5a_1582630567_shutterstock_358931669.jpg.jpg",
         title: "Hawaii beaches review: better than you think",
         category: "beach"
     },
     {
         image:
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/59/cd/executive-club-lounge.jpg?w=900&h=-1&s=1",
+            "https://images.thrillophilia.com/image/upload/s--ZzNHmVXc--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/493/original/1626069380_3orpmnbn9t0tch9oh7uhtc15uwry_skandagiri-hills-night-trek-path-our-backpack-tales.jpeg.jpg",
         title: "Mountains at night: 12 best locations to enjoy the view",
         category: "nature"
     },
     {
         image:
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/5a/36/roof-top-infinity-pool.jpg?w=900&h=-1&s=1",
-        title: "Aurora in Norway: when to visit for best experience",
+            "https://images.thrillophilia.com/image/upload/s--HCBca-5y--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/494/original/1626069429_4rxu4ca9hbgyqt6obv3ti3xpiqdk_1588749616_shutterstock_1378478267.jpg.jpg",
         category: "nature"
     },
     {
         image:
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/0c/6e/dc/courtyard-bengaluru-hebbal.jpg?w=900&h=-1&s=1",
+            "https://images.thrillophilia.com/image/upload/s--WcRAy0Zl--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/173/802/original/1570791985_The-15-Best-Shopping-Places-In-Bangalore-For-Retail-Therapy.jpg.jpg",
         title: "Best places to visit this winter",
         category: "tourism"
     },
     {
         image:
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/a6/5b/95/a-5-star-hotel-in-hebbal.jpg?w=900&h=-1&s=1",
+            "https://images.thrillophilia.com/image/upload/s--rtbSv22l--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/495/original/1626069512_w2fhtmpzvp2b9bpf119jrjm5qrh0_lja9yilp6wauxepgmsuh7sreduft_1575643314_1541155700_Q_Mango_Forest_-__%2810%29.jpg.jpg.jpg",
         title: "Active volcanos reviews: travel at your own risk",
         category: "nature"
     }
@@ -132,7 +131,7 @@ const useStyles1 = createStyles((theme) => ({
         paddingTop: rem(180),
         paddingBottom: rem(130),
         backgroundImage:
-            'url(https://media-cdn.tripadvisor.com/media/photo-w/1c/3f/b6/1b/starter.jpg)',
+            'url(https://images.thrillophilia.com/image/upload/s--DOdCq2tg--/c_fill,g_center,h_460,q_auto,w_800/dpr_1.0,f_auto,fl_strip_profile/v1/images/photos/000/374/492/original/1626094582_zuwk63ts7wgm1ko2dthk8uee3h5a_1582630567_shutterstock_358931669.jpg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
 
@@ -186,16 +185,16 @@ export function HeroImageBackground() {
 
     return (
         <div className={classes.wrapper}>
-            <Overlay color="#000" opacity={0.50} zIndex={1} />
+            <Overlay color="#000" opacity={0.40} zIndex={1} />
             <div className={classes.inner}>
                 <Title className={classes.title}>
-                    Foods to indulge in
+                    Activities To Do Around Bangalore
                 </Title>
             </div>
         </div>
     );
 }
-export default function FoodList() {
+export default function ActivityList() {
 
     return (
         <>
@@ -223,7 +222,7 @@ export default function FoodList() {
                             wrap="wrap"
                         >
                             <Title order={3} weight={700} >
-                                Bisi Bele Bhath
+                                Camping at Nandi Hills
                             </Title>
                         </Flex>
                         <Divider my="sm" />
@@ -237,7 +236,15 @@ export default function FoodList() {
                         >
                             <div className='col1'>
                                 <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
-                                    <Text fz="md">Bisi Bele Bhath literally translates to ‘Hot Dal Rice’ (the name alone should invoke in you a warmth akin to eating mom’s homemade daal chawal). The dish features daal, rice and vegetables blended together like a khichdi, and served with boondi, namkeen or sometimes potato chips. It’s soul food at its best. Burping is encouraged. Where to get it? Bisi Bele Bhath is a very common ‘rice item’, available at most local South Indian joints. If you have to eat it just once, one of the best places is Maiya’s.</Text>
+                                    <Text fz="md">
+                                        One of the most exciting things to do in Bangalore is to sign up for an outdoor camping trip to the picturesque Nandi Hills. The experience is defined by thrilling treks, delicious meals, comfortable accommodations and a number of other exciting activities like zip lining and bonfires that will keep you entertained throughout the activity.
+
+                                        The camping site also has arrangements for various games such as football, foosball, volleyball, snooker and much more. It is also the perfect opportunity to explore the breathtaking natural surroundings of the Nandi Hills, which are known for their misty blue hue and the endless stretches of greenery that you can explore on foot.
+
+                                        Location: Distance from Bangalore is 61kms
+
+                                        Timings: Check-in time: 4:00 pm, check out at 11:00 a.m.
+                                    </Text>
                                 </Spoiler>
                             </div>
                         </Group>
@@ -268,7 +275,7 @@ export default function FoodList() {
                             wrap="wrap"
                         >
                             <Title order={3} weight={700} >
-                                Bun Nippat
+                                Go for Microlight Flying
                             </Title>
                         </Flex>
                         <Divider my="sm" />
@@ -282,7 +289,15 @@ export default function FoodList() {
                         >
                             <div className='col1'>
                                 <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
-                                    <Text fz="md">Bangalore is a city of innovators, so naturally they have they own innovative signature chaat. Bun Nippat is a simple concept, a crisp, deep-fried masala nippat is placed in the warm confines of a fresh bun, along with chopped onions, grated cheese and a secret sauce that cannot be revealed to non-Bangaloreans! Pair this with a bottle of masala coke, and you will be transported to pure chatpata paradise. Where to get it? Bun Nippat stalls are found around college areas because the kids love it. The best bun nippat and masala coke combination is available at Chetty’s Corner.</Text>
+                                    <Text fz="md">
+                                        If you are searching for unique things to do in Bangalore, there is no better experience than going on a microlight flight above the city. It is considered one of the most offbeat things to do in Bangalore and is rare to find anywhere else in the country.
+
+                                        You can get tethered to a small cart that is attached to a large parachute that uses a motor-engine mechanism like that in a plane to take you 4,000 feet in the air. From here, you can catch an incredible view of the entire city and its surroundings from above. The activity is conducted in tandem with an experienced pilot who will navigate the machine while you are in the air so that you can spend the entire time taking in the views and feeling an adrenaline rush before you land.
+
+                                        Location: Hosakere Lakeside, Ramanagara
+
+                                        Timings: 10:00 a.m. – 5:30 p.m.
+                                    </Text>
                                 </Spoiler>
                             </div>
                         </Group>
