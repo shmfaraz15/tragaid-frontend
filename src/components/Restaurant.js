@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text, Paper, Flex, Title, Divider, ThemeIcon, Group, SimpleGrid, Spoiler, Rating } from '@mantine/core';
 import { IconCheck, IconMapPinFilled, IconPhone, IconStarFilled } from '@tabler/icons-react';
 import { Carousel } from "@mantine/carousel"
@@ -9,6 +9,7 @@ import {
     // useMantineTheme,
     rem
 } from "@mantine/core"
+import appcontext from '../context/Context';
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -124,10 +125,12 @@ export function CardsCarousel() {
 
 
 export default function Restaurant() {
+    const context = useContext(appcontext);
+    const { restaurant } = context
     return (
         <Paper shadow="sm" p="md" withBorder >
             <Paper className="header_" shadow="sm" p="md" withBorder >
-                <Title order={1}>Time Traveller</Title>
+                <Title order={1}>{restaurant.name}</Title>
                 {/* <Flex
                     // mih={50}
                     bg="rgba(F,F,F)"
@@ -150,7 +153,7 @@ export default function Restaurant() {
                     // wrap="wrap"
                     >
                         <ThemeIcon variant="default" size="sm"><IconMapPinFilled /></ThemeIcon>
-                        <Text fz="sm" fw={100}>Sai Vishram, 144 - C/1, Kirloskar Road, Bommasandra Industrial Estate, Electronic City, Bengaluru</Text>
+                        <Text fz="sm" fw={100}>{restaurant.address}</Text>
                     </Flex>
                     <Divider orientation="vertical" />
                     <Flex
@@ -233,7 +236,7 @@ export default function Restaurant() {
                                 </Title>
                                 <Group spacing={3}>
 
-                                    <Text fz="sm">Cost for two ₹1200 approx</Text>
+                                    <Text fz="sm">{restaurant.rate}</Text>
                                 </Group>
                                 <Group spacing={3}>
                                     <Text fz="sm" c="dimmed">Cuisines:</Text>

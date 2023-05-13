@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import "./NavbarStyles.css"
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
     const [clicked, setClicked] = useState(false)
+    let navigate = useNavigate()
     const items = [
         {
             title: "Home",
@@ -47,7 +49,19 @@ export default function Navbar() {
                         </li>
                     )
                 })}
-                <button>Sign Up</button>
+                {localStorage.getItem("token") ?
+                    <button
+                        onClick={() => {
+                            localStorage.removeItem("token")
+                            navigate('/')
+                        }}
+                    >Logout</button> :
+                    <button
+                        onClick={() => {
+                            navigate('/login')
+                        }}
+                    >Login</button>
+                }
             </ul>
 
         </nav>

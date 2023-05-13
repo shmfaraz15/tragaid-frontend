@@ -66,6 +66,7 @@ export function Login() {
                 password: credentials.password
             }) // body data type must match "Content-Type" header
         });
+        console.log(response)
         const json = await response.json();//authntoken will be returned
         console.log("json", json)
         if (json.token) {
@@ -81,7 +82,7 @@ export function Login() {
         <div className={classes.wrapper}>
             <Paper className={classes.form} radius={0} p={30}>
                 <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-                    Welcome back!
+                    Welcome to Trueguide!
                 </Title>
 
                 <TextInput

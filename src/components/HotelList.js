@@ -1,21 +1,143 @@
-import { Avatar, Flex, Paper, Stack, TypographyStylesProvider } from '@mantine/core'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
-    Card,
-    Image,
-    Group,
-    Badge,
-    ActionIcon, Title, Text, Container, Button, Overlay, createStyles, rem
+    Title, Overlay, createStyles, rem, Rating, ThemeIcon, Anchor, ActionIcon
 } from '@mantine/core';
-import { IconHeart } from "@tabler/icons-react"
+import { IconExternalLink, IconMapPinShare, IconToolsKitchen } from '@tabler/icons-react';
+import { Text, Paper, Flex, Divider, Group } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
+import { Carousel } from "@mantine/carousel"
+// import { useMediaQuery } from "@mantine/hooks"
+import {
+
+    Button,
+    // useMantineTheme,
+
+} from "@mantine/core"
+import Navbar from './Navbar';
+import appcontext from '../context/Context';
+import { useNavigate } from 'react-router-dom';
+
+const useStyles = createStyles(theme => ({
+    card: {
+        height: rem(440),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        backgroundSize: "contain",
+        backgroundPosition: "center"
+
+    },
+
+    title: {
+        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+        fontWeight: 900,
+        color: theme.white,
+        lineHeight: 1.2,
+        fontSize: rem(32),
+        marginTop: theme.spacing.xs
+    },
+
+    category: {
+        color: theme.white,
+        opacity: 0.7,
+        fontWeight: 700,
+        textTransform: "uppercase"
+    }
+}))
+
+function Card({ image, title, category }) {
+    const { classes } = useStyles()
+
+    return (
+        <Paper
+            shadow="md"
+            p="xl"
+            radius="xs"
+            sx={{ backgroundImage: `url(${image})` }}
+            className={classes.card}
+            maw={400}
+            w={400}
+            mah={300}
+        >
+            <Button variant="white" color="dark">
+                Images
+            </Button>
+        </Paper>
+    )
+}
+
+const data = [
+    {
+        image:
+            "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/03/793f682aec8c3e49a7ebf834cace561a.jpg",
+        title: "Best forests to visit in North America",
+        category: "nature"
+    },
+    {
+        image:
+            "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/5a/03/9e/inside-outside-combo.jpg",
+        title: "Hawaii beaches review: better than you think",
+        category: "beach"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/59/cd/executive-club-lounge.jpg?w=900&h=-1&s=1",
+        title: "Mountains at night: 12 best locations to enjoy the view",
+        category: "nature"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/5a/36/roof-top-infinity-pool.jpg?w=900&h=-1&s=1",
+        title: "Aurora in Norway: when to visit for best experience",
+        category: "nature"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/0c/6e/dc/courtyard-bengaluru-hebbal.jpg?w=900&h=-1&s=1",
+        title: "Best places to visit this winter",
+        category: "tourism"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/a6/5b/95/a-5-star-hotel-in-hebbal.jpg?w=900&h=-1&s=1",
+        title: "Active volcanos reviews: travel at your own risk",
+        category: "nature"
+    }
+]
+
+export function CardsCarousel() {
+    // const theme = useMantineTheme()
+    // const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`)
+    const slides = data.map(item => (
+        <Carousel.Slide key={item.title}>
+            <Card {...item} />
+        </Carousel.Slide>
+    ))
+
+    return (
+        <Carousel
+            slideSize="100%"
+            breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: rem(2) }]}
+            slideGap="xl"
+            align="start"
+            // slidesToScroll={mobile ? 1 : 2}
+            slidesToScroll={1}
+            maw={400}
+            mah={300}
+        >
+            {slides}
+        </Carousel>
+    )
+}
+
+const useStyles1 = createStyles((theme) => ({
     wrapper: {
         position: 'relative',
         paddingTop: rem(180),
         paddingBottom: rem(130),
         backgroundImage:
-            'url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/5e/d2/1e/jr-resorts-perfect-place.jpg?w=1600&h=900&s=1)',
+            'url(https://media-cdn.tripadvisor.com/media/photo-m/1280/13/99/6e/d6/getlstd-property-photo.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
 
@@ -61,257 +183,122 @@ const useStyles = createStyles((theme) => ({
         },
     },
 
-    // controls: {
-    //     marginTop: `calc(${theme.spacing.xl} * 1.5)`,
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     paddingLeft: theme.spacing.md,
-    //     paddingRight: theme.spacing.md,
 
-    //     [theme.fn.smallerThan('xs')]: {
-    //         flexDirection: 'column',
-    //     },
-    // },
-
-    // control: {
-    //     height: rem(42),
-    //     fontSize: theme.fontSizes.md,
-
-    //     '&:not(:first-of-type)': {
-    //         marginLeft: theme.spacing.md,
-    //     },
-
-    //     [theme.fn.smallerThan('xs')]: {
-    //         '&:not(:first-of-type)': {
-    //             marginTop: theme.spacing.md,
-    //             marginLeft: 0,
-    //         },
-    //     },
-    // },
-
-    // secondaryControl: {
-    //     color: theme.white,
-    //     backgroundColor: 'rgba(255, 255, 255, .4)',
-
-    //     '&:hover': {
-    //         backgroundColor: 'rgba(255, 255, 255, .45) !important',
-    //     },
-    // },
 }));
 
-const useStyles2 = createStyles(theme => ({
-    card: {
-        backgroundColor:
-            theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white
-    },
-
-    section: {
-        borderBottom: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-            }`,
-        paddingLeft: theme.spacing.md,
-        paddingRight: theme.spacing.md,
-        paddingBottom: theme.spacing.md
-    },
-
-    like: {
-        color: theme.colors.red[6]
-    },
-
-    label: {
-        textTransform: "uppercase",
-        fontSize: theme.fontSizes.xs,
-        fontWeight: 700
-    }
-}))
-
-const useStyles3 = createStyles(theme => ({
-    comment: {
-        padding: `${theme.spacing.lg} ${theme.spacing.xl}`
-    },
-
-    body: {
-        paddingLeft: rem(54),
-        paddingTop: theme.spacing.sm,
-        fontSize: theme.fontSizes.sm
-    },
-
-    content: {
-        "& > p:last-child": {
-            marginBottom: 0
-        }
-    }
-}))
-
-export function CommentHtml({ postedAt, body, author }) {
-    const { classes } = useStyles3()
-    return (
-        <Paper withBorder radius="md" className={classes.comment}>
-            <Group>
-                <Avatar src={author.image} alt={author.name} radius="xl" />
-                <div>
-                    <Text fz="sm">{author.name}</Text>
-                    <Text fz="xs" c="dimmed">
-                        {postedAt}
-                    </Text>
-                </div>
-            </Group>
-            <TypographyStylesProvider className={classes.body}>
-                <div
-                    className={classes.content}
-                    dangerouslySetInnerHTML={{ __html: body }}
-                />
-            </TypographyStylesProvider>
-        </Paper>
-    )
-}
-
-export function BadgeCard({ image, title, description, country, badges }) {
-    const { classes, theme } = useStyles2()
-
-    const features = badges.map(badge => (
-        <Badge
-            color={theme.colorScheme === "dark" ? "dark" : "gray"}
-            key={badge.label}
-            leftSection={badge.emoji}
-        >
-            {badge.label}
-        </Badge>
-    ))
-    return (
-        <Card withBorder radius="md" p="md" className={classes.card}>
-            <Card.Section>
-                <Image src={image} alt={title} height={180} />
-            </Card.Section>
-
-            <Card.Section className={classes.section} mt="md">
-                <Group position="apart">
-                    <Text fz="lg" fw={500}>
-                        {title}
-                    </Text>
-                    <Badge size="sm">{country}</Badge>
-                </Group>
-                <Text fz="sm" mt="xs">
-                    {description}
-                </Text>
-            </Card.Section>
-
-            <Card.Section className={classes.section}>
-                <Text mt="md" className={classes.label} c="dimmed">
-                    Perfect for you, if you enjoy
-                </Text>
-                <Group spacing={7} mt={5}>
-                    {features}
-                </Group>
-            </Card.Section>
-
-            <Group mt="xs">
-                <Button radius="md" style={{ flex: 1 }}>
-                    Show details
-                </Button>
-                <ActionIcon variant="default" radius="md" size={36}>
-                    <IconHeart size="1.1rem" className={classes.like} stroke={1.5} />
-                </ActionIcon>
-            </Group>
-        </Card>
-    )
-}
-
 export function HeroImageBackground() {
-    const { classes } = useStyles();
+    const { classes } = useStyles1();
 
     return (
         <div className={classes.wrapper}>
             <Overlay color="#000" opacity={0.50} zIndex={1} />
-
             <div className={classes.inner}>
                 <Title className={classes.title}>
-                    Hotels and Places to Stay
-                    {/* <Text component="span" inherit className={classes.highlight}>
-                        any stack
-                    </Text> */}
+                    Top hotels in Bangalore
                 </Title>
-
-                <Container size={640}>
-                    <Text size="lg" className={classes.description}>
-                        Popular hotels in your near by locations right now
-                    </Text>
-                </Container>
-
-                {/* <div className={classes.controls}>
-                    <Button className={classes.control} variant="white" size="lg">
-                        Get started
-                    </Button>
-                    <Button className={cx(classes.control, classes.secondaryControl)} size="lg">
-                        Live demo
-                    </Button>
-                </div> */}
             </div>
         </div>
     );
 }
 export default function HotelList() {
-    const data2 = {
-        "postedAt": "10 minutes ago",
-        "body": "<p>I use <a href=\"https://heroku.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Heroku</a> to host my Node.js application, but MongoDB add-on appears to be too <strong>expensive</strong>. I consider switching to <a href=\"https://www.digitalocean.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Digital Ocean</a> VPS to save some cash.</p>",
-        "author": {
-            "name": "Jacob Warnhalter",
-            "image": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
-        }
-    }
-    const data = {
-        "image": "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
-        "title": "Verudela Beach",
-        "country": "Croatia",
-        "description": "Completely renovated for the season 2020, Arena Verudela Bech Apartments are fully equipped and modernly furnished 4-star self-service apartments located on the Adriatic coastline by one of the most beautiful beaches in Pula.",
-        "badges": [
-            {
-                "emoji": "☀️",
-                "label": "Sunny weather"
-            },
-            {
-                "emoji": "🦓",
-                "label": "Onsite zoo"
-            },
-            {
-                "emoji": "🌊",
-                "label": "Sea"
-            },
-            {
-                "emoji": "🌲",
-                "label": "Nature"
-            },
-            {
-                "emoji": "🤽",
-                "label": "Water sports"
-            }
-        ]
-    }
+
+    const context = useContext(appcontext);
+    const { hotels, getHotels, setHotel } = context
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        // console.log(gethotels)
+        getHotels(localStorage.getItem("place"))
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <>
+            <Navbar />
             <HeroImageBackground />
-            {/* <Stack align="center" spacing="sm" h={300} sx={(theme) => ({ backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] })}>
-                <BadgeCard image={data.image} title={data.title} description={data.description} country={data.country} badges={data.badges} />
-                
-            </Stack> */}
-            <Stack align="center" h={1000} sx={(theme) => ({ backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] })}>
+            <Flex
+                mih={50}
+                bg="rgba(F, F, F)"
+                gap="xs"
+                justify="flex-start"
+                align="center"
+                direction="column"
+                wrap="wrap"
+            >
+                {hotels.map(hotel => {
+                    return <div key={hotel.id}>
+                        <Paper shadow="sm" p="md" withBorder mt={20} maw={900} >
 
-                <Flex
-                    mih={50}
-                    bg="rgba(0, 0, 0, .3)"
-                    gap="xs"
-                    justify="center"
-                    align="center"
-                    direction="row"
-                    wrap="nowrap"
-                >
-                    <BadgeCard image={data.image} title={data.title} description={data.description} country={data.country} badges={data.badges} />
-                    <CommentHtml postedAt={data2.postedAt} body={data2.body} author={data2.author} />
-                </Flex>
-                <Button variant="outline">1</Button>
-                <Button variant="outline">2</Button>
-                <Button variant="outline">3</Button>
+                            <Group
+                                mih={50}
+                                bg="rgba(F,F,F)"
+                                spacing="xs"
+                                noWrap
+                                grow
+                                align="flex-start"
+                                mt={15}
+                            >
+                                <CardsCarousel />
+                                <Paper className="about_" pl={10} maw={795}>
+                                    <Flex
+                                        // mih={50}
+                                        bg="rgba(F,F,F)"
+                                        gap={3}
+                                        justify="flex-start"
+                                        align="flex-start"
+                                        direction="column"
+                                        wrap="wrap"
+                                    >
+                                        <Anchor td="underline" color='black'
+                                            onClick={() => {
+                                                console.log("hotel clicked:", hotel)
+                                                setHotel(hotel)
+                                                navigate("/hotel")
+                                            }}>
+                                            <Title order={3} weight={700} >
+                                                {hotel.id}. {hotel.name}
+                                            </Title>
+                                        </Anchor>
 
-            </Stack>
+                                        <Group spacing={3}>
+                                            <Rating value={4.5} fractions={2} readOnly size="xs" />
+                                            <Divider orientation="vertical" />
+                                            <Text fz="xs">515 reviews</Text>
+                                        </Group>
+
+                                    </Flex>
+                                    <Divider my="sm" />
+                                    <Group
+                                        mih={50}
+                                        bg="rgba(F,F,F)"
+                                        spacing="xl"
+                                        noWrap
+                                        grow
+                                        align="flex-start"
+                                    >
+                                        <div className='col1'>
+                                            <Group spacing={2} noWrap>
+                                                <Text fz="sm">{hotel.address}</Text>
+                                                <ActionIcon component="a" href="https://www.google.com/maps/place/46+Ounces+Brewgarden/@12.8495322,77.6558743,17.29z/data=!4m6!3m5!1s0x3bae6d248fd8f02b:0x65951f6a484727a6!8m2!3d12.849616!4d77.6578129!16s%2Fg%2F11gxw0jm5r?hl=en-US">
+                                                    <ThemeIcon variant="default" size="xs">
+                                                        <IconMapPinShare />
+                                                    </ThemeIcon>
+                                                </ActionIcon>
+                                            </Group>
+
+                                        </div>
+                                    </Group>
+                                </Paper>
+                            </Group>
+
+                        </Paper>
+                    </div>
+                })}
+
+
+            </Flex>
+
+
         </>
     )
 }

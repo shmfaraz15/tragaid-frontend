@@ -1,17 +1,141 @@
-import { Avatar, Flex, Stack } from '@mantine/core'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
-    Card,
-    Image,
-    Group,
-    Badge,
-    ActionIcon, Title, Text, Button, Overlay, createStyles, rem
+    Title, Overlay, createStyles, rem, Anchor
 } from '@mantine/core';
-import { IconHeart } from "@tabler/icons-react"
 
-const useStyles = createStyles((theme) => ({
+import { Text, Paper, Flex, Divider, Group, Spoiler } from '@mantine/core';
+
+import { Carousel } from "@mantine/carousel"
+// import { useMediaQuery } from "@mantine/hooks"
+import {
+
+    Button,
+    // useMantineTheme,
+
+} from "@mantine/core"
+import Navbar from './Navbar';
+import appcontext from '../context/Context';
+import { useNavigate } from 'react-router-dom';
+
+
+const useStyles = createStyles(theme => ({
+    card: {
+        height: rem(440),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        backgroundSize: "contain",
+        backgroundPosition: "center"
+
+    },
+
+    title: {
+        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+        fontWeight: 900,
+        color: theme.white,
+        lineHeight: 1.2,
+        fontSize: rem(32),
+        marginTop: theme.spacing.xs
+    },
+
+    category: {
+        color: theme.white,
+        opacity: 0.7,
+        fontWeight: 700,
+        textTransform: "uppercase"
+    }
+}))
+
+function Card({ image, title, category }) {
+    const { classes } = useStyles()
+
+    return (
+        <Paper
+            shadow="md"
+            p="xl"
+            radius="md"
+            sx={{ backgroundImage: `url(${image})` }}
+            className={classes.card}
+            maw={700}
+            w={700}
+        >
+            <Button variant="white" color="dark">
+                Images
+            </Button>
+        </Paper>
+    )
+}
+
+const data = [
+    {
+        image:
+            "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/03/793f682aec8c3e49a7ebf834cace561a.jpg",
+        title: "Best forests to visit in North America",
+        category: "nature"
+    },
+    {
+        image:
+            "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/03/d8f3c0b85dacacf59959be1702b87d0b_1458110067_200_thumb.jpg",
+        title: "Hawaii beaches review: better than you think",
+        category: "beach"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/59/cd/executive-club-lounge.jpg?w=900&h=-1&s=1",
+        title: "Mountains at night: 12 best locations to enjoy the view",
+        category: "nature"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/5a/36/roof-top-infinity-pool.jpg?w=900&h=-1&s=1",
+        title: "Aurora in Norway: when to visit for best experience",
+        category: "nature"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/0c/6e/dc/courtyard-bengaluru-hebbal.jpg?w=900&h=-1&s=1",
+        title: "Best places to visit this winter",
+        category: "tourism"
+    },
+    {
+        image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/a6/5b/95/a-5-star-hotel-in-hebbal.jpg?w=900&h=-1&s=1",
+        title: "Active volcanos reviews: travel at your own risk",
+        category: "nature"
+    }
+]
+
+export function CardsCarousel() {
+    // const theme = useMantineTheme()
+    // const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`)
+    const slides = data.map(item => (
+        <Carousel.Slide key={item.title}>
+            <Card {...item} />
+        </Carousel.Slide>
+    ))
+
+    return (
+        <Carousel
+            slideSize="100%"
+            breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: rem(2) }]}
+            slideGap="xl"
+            align="start"
+            // slidesToScroll={mobile ? 1 : 2}
+            slidesToScroll={1}
+            maw={700}
+        >
+            {slides}
+        </Carousel>
+    )
+}
+
+
+const useStyles4 = createStyles((theme) => ({
     wrapper: {
         position: 'relative',
+        width: '100%',
+        height: '100vh',
         paddingTop: rem(180),
         paddingBottom: rem(130),
         backgroundImage:
@@ -26,7 +150,11 @@ const useStyles = createStyles((theme) => ({
     },
 
     inner: {
-        position: 'relative',
+        position: 'absolute',
+        top: '55%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '100%',
         zIndex: 1,
     },
 
@@ -64,111 +192,8 @@ const useStyles = createStyles((theme) => ({
 
 }));
 
-const useStyles2 = createStyles(theme => ({
-    card: {
-        backgroundColor:
-            theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white
-    },
-
-    section: {
-        borderBottom: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-            }`,
-        paddingLeft: theme.spacing.md,
-        paddingRight: theme.spacing.md,
-        paddingBottom: theme.spacing.md
-    },
-
-    like: {
-        color: theme.colors.red[6]
-    },
-
-    label: {
-        textTransform: "uppercase",
-        fontSize: theme.fontSizes.xs,
-        fontWeight: 700
-    }
-}))
-
-const useStyles3 = createStyles(theme => ({
-    body: {
-        paddingLeft: rem(54),
-        paddingTop: theme.spacing.sm
-    }
-}))
-
-export function CommentSimple({ postedAt, body, author }) {
-    const { classes } = useStyles3()
-    return (
-        <div>
-            <Group>
-                <Avatar src={author.image} alt={author.name} radius="xl" />
-                <div>
-                    <Text size="sm">{author.name}</Text>
-                    <Text size="xs" color="dimmed">
-                        {postedAt}
-                    </Text>
-                </div>
-            </Group>
-            <Text className={classes.body} size="sm">
-                {body}
-            </Text>
-        </div>
-    )
-}
-
-export function BadgeCard({ image, title, description, country, badges }) {
-    const { classes, theme } = useStyles2()
-
-    const features = badges.map(badge => (
-        <Badge
-            color={theme.colorScheme === "dark" ? "dark" : "gray"}
-            key={badge.label}
-            leftSection={badge.emoji}
-        >
-            {badge.label}
-        </Badge>
-    ))
-    return (
-        <Card withBorder radius="md" p="md" className={classes.card}>
-            <Card.Section>
-                <Image src={image} alt={title} height={180} />
-            </Card.Section>
-
-            <Card.Section className={classes.section} mt="md">
-                <Group position="apart">
-                    <Text fz="lg" fw={500}>
-                        {title}
-                    </Text>
-                    <Badge size="sm">{country}</Badge>
-                </Group>
-                <Text fz="sm" mt="xs">
-                    {description}
-                </Text>
-            </Card.Section>
-
-            <Card.Section className={classes.section}>
-                <Text mt="md" className={classes.label} c="dimmed">
-                    Perfect for you, if you enjoy
-                </Text>
-                <Group spacing={7} mt={5}>
-                    {features}
-                </Group>
-            </Card.Section>
-
-            <Group mt="xs">
-                <Button radius="md" style={{ flex: 1 }}>
-                    Show details
-                </Button>
-                <ActionIcon variant="default" radius="md" size={36}>
-                    <IconHeart size="1.1rem" className={classes.like} stroke={1.5} />
-                </ActionIcon>
-            </Group>
-        </Card>
-    )
-}
-
 export function HeroImageBackground() {
-    const { classes } = useStyles();
+    const { classes } = useStyles4();
 
     return (
         <div className={classes.wrapper}>
@@ -182,64 +207,75 @@ export function HeroImageBackground() {
     );
 }
 export default function OffBPlaceList() {
-    const data2 = {
-        "postedAt": "10 minutes ago",
-        "body": "This Pokémon likes to lick its palms that are sweetened by being soaked in honey. Teddiursa concocts its own honey by blending fruits and pollen collected by Beedrill. Blastoise has water spouts that protrude from its shell. The water spouts are very accurate.",
-        "author": {
-            "name": "Jacob Warnhalter",
-            "image": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
-        }
-    }
-    const data = {
-        "image": "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
-        "title": "Verudela Beach",
-        "country": "Croatia",
-        "description": "Completely renovated for the season 2020, Arena Verudela Bech Apartments are fully equipped and modernly furnished 4-star self-service apartments located on the Adriatic coastline by one of the most beautiful beaches in Pula.",
-        "badges": [
-            {
-                "emoji": "☀️",
-                "label": "Sunny weather"
-            },
-            {
-                "emoji": "🦓",
-                "label": "Onsite zoo"
-            },
-            {
-                "emoji": "🌊",
-                "label": "Sea"
-            },
-            {
-                "emoji": "🌲",
-                "label": "Nature"
-            },
-            {
-                "emoji": "🤽",
-                "label": "Water sports"
-            }
-        ]
-    }
+    const context = useContext(appcontext);
+    const { offbeatPlaces, getOffbeatPlaces, setOffbeatPlace } = context
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        getOffbeatPlaces(localStorage.getItem("place"))
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <>
+            <Navbar />
             <HeroImageBackground />
-            {/* <Stack align="center" spacing="sm" h={300} sx={(theme) => ({ backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] })}>
-                <BadgeCard image={data.image} title={data.title} description={data.description} country={data.country} badges={data.badges} />
-                
-            </Stack> */}
-            <Stack align="center" h={1000} sx={(theme) => ({ backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] })}>
+            {offbeatPlaces.map(offbeatPlace => {
+                return <div key={offbeatPlace.id}>
+                    <Paper shadow="sm" p="md" withBorder >
 
-                <Flex
-                    mih={50}
-                    bg="rgba(F, F, F)"
-                    gap="xs"
-                    justify="center"
-                    align="center"
-                    direction="row"
-                    wrap="nowrap"
-                >
-                    <BadgeCard image={data.image} title={data.title} description={data.description} country={data.country} badges={data.badges} />
-                    <CommentSimple postedAt={data2.postedAt} body={data2.body} author={data2.author} />
-                </Flex>
-            </Stack>
+                        <Group
+                            mih={50}
+                            bg="rgba(F,F,F)"
+                            spacing="xl"
+                            // noWrap
+                            grow
+                            align="flex-start"
+                            mt={15}
+                        >
+                            <CardsCarousel />
+                            <Paper className="about_" shadow="sm" p="md" withBorder maw={795}>
+                                <Flex
+                                    // mih={50}
+                                    bg="rgba(F,F,F)"
+                                    gap="md"
+                                    justify="flex-start"
+                                    align="flex-start"
+                                    direction="row"
+                                    wrap="wrap"
+                                >
+                                    <Anchor td="underline" color='black'
+                                        onClick={() => {
+                                            console.log("offb clicked:", offbeatPlace)
+                                            setOffbeatPlace(offbeatPlace)
+                                            navigate("/offbeatplace")
+                                        }}>
+                                        <Title order={3} weight={700} >
+                                            {offbeatPlace.name}
+                                        </Title>
+                                    </Anchor>
+                                </Flex>
+                                <Divider my="sm" />
+                                <Group
+                                    mih={50}
+                                    bg="rgba(F,F,F)"
+                                    spacing="xl"
+                                    noWrap
+                                    grow
+                                    align="flex-start"
+                                >
+                                    <div className='col1'>
+                                        <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
+                                            <Text fz="md">Gandikota, a small hamlet on the right bank of Pennar, is one of the best offbeat places near Bangalore for a day out. Glamorised by a fort made of red stones, bordered by deep and rocky gorge . it is a perfect place to feel the “Indian Grand Canyon” effect.</Text>
+                                        </Spoiler>
+                                    </div>
+                                </Group>
+                            </Paper>
+                        </Group>
+
+                    </Paper >
+                </div >
+            })}
         </>
     )
 }

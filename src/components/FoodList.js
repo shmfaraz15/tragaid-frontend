@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
     Title, Overlay, createStyles, rem
 } from '@mantine/core';
@@ -13,6 +13,9 @@ import {
     // useMantineTheme,
 
 } from "@mantine/core"
+import Navbar from './Navbar';
+import appcontext from '../context/Context';
+
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -129,6 +132,8 @@ export function CardsCarousel() {
 const useStyles1 = createStyles((theme) => ({
     wrapper: {
         position: 'relative',
+        width: '100%',
+        height: '100vh',
         paddingTop: rem(180),
         paddingBottom: rem(130),
         backgroundImage:
@@ -143,7 +148,11 @@ const useStyles1 = createStyles((theme) => ({
     },
 
     inner: {
-        position: 'relative',
+        position: 'absolute',
+        top: '55%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '100%',
         zIndex: 1,
     },
 
@@ -196,100 +205,69 @@ export function HeroImageBackground() {
     );
 }
 export default function FoodList() {
+    const context = useContext(appcontext);
+    const { foods, getFoods } = context
+
+    useEffect(() => {
+        getFoods(localStorage.getItem("place"))
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
+            <Navbar />
             <HeroImageBackground />
-            <Paper shadow="sm" p="md" withBorder >
+            {foods.map(food => {
+                return <div key={food.foodName}>
+                    <Paper shadow="sm" p="md" withBorder >
 
-                <Group
-                    mih={50}
-                    bg="rgba(F,F,F)"
-                    spacing="xl"
-                    // noWrap
-                    grow
-                    align="flex-start"
-                    mt={15}
-                >
-                    <CardsCarousel />
-                    <Paper className="about_" shadow="sm" p="md" withBorder maw={795}>
-                        <Flex
-                            // mih={50}
-                            bg="rgba(F,F,F)"
-                            gap="md"
-                            justify="flex-start"
-                            align="flex-start"
-                            direction="row"
-                            wrap="wrap"
-                        >
-                            <Title order={3} weight={700} >
-                                Bisi Bele Bhath
-                            </Title>
-                        </Flex>
-                        <Divider my="sm" />
                         <Group
                             mih={50}
                             bg="rgba(F,F,F)"
                             spacing="xl"
-                            noWrap
+                            // noWrap
                             grow
                             align="flex-start"
+                            mt={15}
                         >
-                            <div className='col1'>
-                                <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
-                                    <Text fz="md">Bisi Bele Bhath literally translates to ‘Hot Dal Rice’ (the name alone should invoke in you a warmth akin to eating mom’s homemade daal chawal). The dish features daal, rice and vegetables blended together like a khichdi, and served with boondi, namkeen or sometimes potato chips. It’s soul food at its best. Burping is encouraged. Where to get it? Bisi Bele Bhath is a very common ‘rice item’, available at most local South Indian joints. If you have to eat it just once, one of the best places is Maiya’s.</Text>
-                                </Spoiler>
-                            </div>
+                            <CardsCarousel />
+                            <Paper className="about_" shadow="sm" p="md" withBorder maw={795}>
+                                <Flex
+                                    // mih={50}
+                                    bg="rgba(F,F,F)"
+                                    gap="md"
+                                    justify="flex-start"
+                                    align="flex-start"
+                                    direction="row"
+                                    wrap="wrap"
+                                >
+                                    <Title order={3} weight={700} >
+                                        {food.foodName}
+                                    </Title>
+                                </Flex>
+                                <Divider my="sm" />
+                                <Group
+                                    mih={50}
+                                    bg="rgba(F,F,F)"
+                                    spacing="xl"
+                                    noWrap
+                                    grow
+                                    align="flex-start"
+                                >
+                                    <div className='col1'>
+                                        <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
+                                            <Text fz="md">{food.details}</Text>
+                                        </Spoiler>
+                                    </div>
+                                </Group>
+                            </Paper>
                         </Group>
+
                     </Paper>
-                </Group>
+                </div>
+            })}
 
-            </Paper>
-            <Paper shadow="sm" p="md" withBorder >
 
-                <Group
-                    mih={50}
-                    bg="rgba(F,F,F)"
-                    spacing="xl"
-                    // noWrap
-                    grow
-                    align="flex-start"
-                    mt={15}
-                >
-                    <CardsCarousel />
-                    <Paper className="about_" shadow="sm" p="md" withBorder maw={795}>
-                        <Flex
-                            // mih={50}
-                            bg="rgba(F,F,F)"
-                            gap="md"
-                            justify="flex-start"
-                            align="flex-start"
-                            direction="row"
-                            wrap="wrap"
-                        >
-                            <Title order={3} weight={700} >
-                                Bun Nippat
-                            </Title>
-                        </Flex>
-                        <Divider my="sm" />
-                        <Group
-                            mih={50}
-                            bg="rgba(F,F,F)"
-                            spacing="xl"
-                            noWrap
-                            grow
-                            align="flex-start"
-                        >
-                            <div className='col1'>
-                                <Spoiler maxHeight={250} showLabel="Show more" hideLabel="Hide">
-                                    <Text fz="md">Bangalore is a city of innovators, so naturally they have they own innovative signature chaat. Bun Nippat is a simple concept, a crisp, deep-fried masala nippat is placed in the warm confines of a fresh bun, along with chopped onions, grated cheese and a secret sauce that cannot be revealed to non-Bangaloreans! Pair this with a bottle of masala coke, and you will be transported to pure chatpata paradise. Where to get it? Bun Nippat stalls are found around college areas because the kids love it. The best bun nippat and masala coke combination is available at Chetty’s Corner.</Text>
-                                </Spoiler>
-                            </div>
-                        </Group>
-                    </Paper>
-                </Group>
-
-            </Paper>
 
         </>
     )

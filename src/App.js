@@ -14,6 +14,8 @@ import OffBPlace from './components/OffBPlace';
 import RestaurantList from './components/RestaurantList';
 import Restaurant from './components/Restaurant';
 import ActivityList from './components/ActivityList';
+import Region from './components/Region';
+import ReagionList from './components/ReagionList';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
               <Route path='/restaurantlist' element={<RestaurantList />} />
               <Route path='/restaurant' element={<Restaurant />} />
               <Route path='/activitylist' element={<ActivityList />} />
+              <Route path='/region' element={<Region />} />
+              <Route path='/regionlist' element={<ReagionList />} />
             </Routes>
           </BrowserRouter>
         </div>

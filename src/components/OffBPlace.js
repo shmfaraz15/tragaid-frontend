@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text, Paper, Flex, Title, Divider, ThemeIcon, Group, SimpleGrid, Spoiler, Rating } from '@mantine/core';
 import { IconBus, IconCar, IconMapPinFilled, IconStarFilled } from '@tabler/icons-react';
 import { Carousel } from "@mantine/carousel"
@@ -9,6 +9,8 @@ import {
     // useMantineTheme,
     rem
 } from "@mantine/core"
+import appcontext from '../context/Context';
+
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -124,10 +126,13 @@ export function CardsCarousel() {
 
 
 export default function OffBPlace() {
+    const context = useContext(appcontext);
+    const { offbeatPlace } = context
+
     return (
         <Paper shadow="sm" p="md" withBorder >
             <Paper className="header_" shadow="sm" p="md" withBorder >
-                <Title order={1}>Gandikota</Title>
+                <Title order={1}>{offbeatPlace.name}</Title>
                 {/* <Flex
                     // mih={50}
                     bg="rgba(F,F,F)"

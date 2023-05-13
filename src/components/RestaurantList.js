@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
     Title, Overlay, createStyles, rem, Rating, ThemeIcon, Anchor, ActionIcon
 } from '@mantine/core';
@@ -13,6 +13,9 @@ import {
     // useMantineTheme,
 
 } from "@mantine/core"
+import Navbar from './Navbar';
+import appcontext from '../context/Context';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -199,8 +202,19 @@ export function HeroImageBackground() {
 }
 export default function RestaurantList() {
 
+    const context = useContext(appcontext);
+    const { restaurants, getRestaurants, setRestaurant } = context
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        // console.log(getRestaurants)
+        getRestaurants(localStorage.getItem("place"))
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <>
+            <Navbar />
             <HeroImageBackground />
             <Flex
                 mih={50}
@@ -211,152 +225,93 @@ export default function RestaurantList() {
                 direction="column"
                 wrap="wrap"
             >
-                <Paper shadow="sm" p="md" withBorder mt={20} maw={900} >
+                {restaurants.map(restaurant => {
+                    return <div key={restaurant.restaurantId}>
+                        <Paper shadow="sm" p="md" withBorder mt={20} maw={900} >
 
-                    <Group
-                        mih={50}
-                        bg="rgba(F,F,F)"
-                        spacing="xs"
-                        noWrap
-                        grow
-                        align="flex-start"
-                        mt={15}
-                    >
-                        <CardsCarousel />
-                        <Paper className="about_" pl={10} maw={795}>
-                            <Flex
-                                // mih={50}
-                                bg="rgba(F,F,F)"
-                                gap={3}
-                                justify="flex-start"
-                                align="flex-start"
-                                direction="column"
-                                wrap="wrap"
-                            >
-                                <Title order={3} weight={700} >
-                                    1. Time Traveller
-                                </Title>
-                                <Group spacing={3}>
-                                    <Rating value={3.5} fractions={2} readOnly size="xs" />
-                                    <Divider orientation="vertical" />
-                                    <Text fz="xs">2,021 reviews</Text>
-                                </Group>
-                                <Group spacing={3}>
-                                    <Text fz="sm">Cost for two ₹1200 approx</Text>
-                                    <Divider orientation="vertical" />
-                                    <ThemeIcon variant="default" size="xs">
-                                        <IconToolsKitchen />
-                                    </ThemeIcon>
-                                    <Anchor href="https://www.dineout.co.in/bangalore/time-traveller-electronic-city-south-bangalore-10033/menu#&gid=2&pid=1" target="_blank" fz="sm" td="underline" color='black'>
-                                        Menu
-                                    </Anchor>
-                                    <ThemeIcon variant="default" size="xs">
-                                        <IconExternalLink />
-                                    </ThemeIcon>
-
-                                </Group>
-                            </Flex>
-                            <Divider my="sm" />
                             <Group
                                 mih={50}
                                 bg="rgba(F,F,F)"
-                                spacing="xl"
+                                spacing="xs"
                                 noWrap
                                 grow
                                 align="flex-start"
+                                mt={15}
                             >
-                                <div className='col1'>
-                                    <Group spacing={2} noWrap>
-                                        <Text fz="sm">Sai Vishram, 144 - C/1, Kirloskar Road, Bommasandra Industrial Estate, Electronic City, Bengaluru</Text>
-                                        <ActionIcon component="a" href="https://www.google.com/maps/place/Time+Traveller+(Urban+Herbivore)/@12.8246292,77.6786191,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae6c5cb14efaeb:0x16d301bbadb6c25b!8m2!3d12.824624!4d77.681194!16s%2Fg%2F11bxfyvncs?hl=en-US">
+                                <CardsCarousel />
+                                <Paper className="about_" pl={10} maw={795}>
+                                    <Flex
+                                        // mih={50}
+                                        bg="rgba(F,F,F)"
+                                        gap={3}
+                                        justify="flex-start"
+                                        align="flex-start"
+                                        direction="column"
+                                        wrap="wrap"
+                                    >
+                                        <Anchor td="underline" color='black'
+                                            onClick={() => {
+                                                console.log("restaurant clicked:", restaurant)
+                                                setRestaurant(restaurant)
+                                                navigate("/restaurant")
+                                            }}>
+                                            <Title order={3} weight={700} >
+                                                {restaurant.restaurantId}. {restaurant.name}
+                                            </Title>
+                                        </Anchor>
+
+                                        <Group spacing={3}>
+                                            <Rating value={4.5} fractions={2} readOnly size="xs" />
+                                            <Divider orientation="vertical" />
+                                            <Text fz="xs">515 reviews</Text>
+                                        </Group>
+                                        <Group spacing={3}>
+                                            <Text fz="sm">{restaurant.rate}</Text>
+                                            <Divider orientation="vertical" />
                                             <ThemeIcon variant="default" size="xs">
-                                                <IconMapPinShare />
+                                                <IconToolsKitchen />
                                             </ThemeIcon>
-                                        </ActionIcon>
-                                    </Group>
-                                    <Group spacing={2} noWrap mt={10}>
-                                        <Text fz="sm" c="dimmed">Cuisine:</Text>
-                                        <Text fz="sm">Indian,Asian</Text>
-                                    </Group>
-                                </div>
-                            </Group>
-                        </Paper>
-                    </Group>
-
-                </Paper>
-                <Paper shadow="sm" p="md" withBorder mt={20} maw={900} >
-
-                    <Group
-                        mih={50}
-                        bg="rgba(F,F,F)"
-                        spacing="xs"
-                        noWrap
-                        grow
-                        align="flex-start"
-                        mt={15}
-                    >
-                        <CardsCarousel />
-                        <Paper className="about_" pl={10} maw={795}>
-                            <Flex
-                                // mih={50}
-                                bg="rgba(F,F,F)"
-                                gap={3}
-                                justify="flex-start"
-                                align="flex-start"
-                                direction="column"
-                                wrap="wrap"
-                            >
-                                <Title order={3} weight={700} >
-                                    2. 46 Ounces
-                                </Title>
-                                <Group spacing={3}>
-                                    <Rating value={4.5} fractions={2} readOnly size="xs" />
-                                    <Divider orientation="vertical" />
-                                    <Text fz="xs">515 reviews</Text>
-                                </Group>
-                                <Group spacing={3}>
-                                    <Text fz="sm">Cost for two ₹1600 approx</Text>
-                                    <Divider orientation="vertical" />
-                                    <ThemeIcon variant="default" size="xs">
-                                        <IconToolsKitchen />
-                                    </ThemeIcon>
-                                    <Anchor href="https://www.dineout.co.in/bangalore/time-traveller-electronic-city-south-bangalore-10033/menu#&gid=2&pid=1" target="_blank" fz="sm" td="underline" color='black'>
-                                        Menu
-                                    </Anchor>
-                                    <ThemeIcon variant="default" size="xs">
-                                        <IconExternalLink />
-                                    </ThemeIcon>
-
-                                </Group>
-                            </Flex>
-                            <Divider my="sm" />
-                            <Group
-                                mih={50}
-                                bg="rgba(F,F,F)"
-                                spacing="xl"
-                                noWrap
-                                grow
-                                align="flex-start"
-                            >
-                                <div className='col1'>
-                                    <Group spacing={2} noWrap>
-                                        <Text fz="sm">Electronics City Phase 1 46 Karnataka 560100 Velankani Drive, Bengaluru 560100 India</Text>
-                                        <ActionIcon component="a" href="https://www.google.com/maps/place/46+Ounces+Brewgarden/@12.8495322,77.6558743,17.29z/data=!4m6!3m5!1s0x3bae6d248fd8f02b:0x65951f6a484727a6!8m2!3d12.849616!4d77.6578129!16s%2Fg%2F11gxw0jm5r?hl=en-US">
+                                            <Anchor href="https://www.dineout.co.in/bangalore/time-traveller-electronic-city-south-bangalore-10033/menu#&gid=2&pid=1" target="_blank" fz="sm" td="underline" color='black'>
+                                                Menu
+                                            </Anchor>
                                             <ThemeIcon variant="default" size="xs">
-                                                <IconMapPinShare />
+                                                <IconExternalLink />
                                             </ThemeIcon>
-                                        </ActionIcon>
-                                    </Group>
-                                    <Group spacing={2} noWrap mt={10}>
-                                        <Text fz="sm" c="dimmed">Cuisine:</Text>
-                                        <Text fz="sm">Indian,Bar,International</Text>
-                                    </Group>
-                                </div>
-                            </Group>
-                        </Paper>
-                    </Group>
 
-                </Paper>
+                                        </Group>
+                                    </Flex>
+                                    <Divider my="sm" />
+                                    <Group
+                                        mih={50}
+                                        bg="rgba(F,F,F)"
+                                        spacing="xl"
+                                        noWrap
+                                        grow
+                                        align="flex-start"
+                                    >
+                                        <div className='col1'>
+                                            <Group spacing={2} noWrap>
+                                                <Text fz="sm">{restaurant.address}</Text>
+                                                <ActionIcon component="a" href="https://www.google.com/maps/place/46+Ounces+Brewgarden/@12.8495322,77.6558743,17.29z/data=!4m6!3m5!1s0x3bae6d248fd8f02b:0x65951f6a484727a6!8m2!3d12.849616!4d77.6578129!16s%2Fg%2F11gxw0jm5r?hl=en-US">
+                                                    <ThemeIcon variant="default" size="xs">
+                                                        <IconMapPinShare />
+                                                    </ThemeIcon>
+                                                </ActionIcon>
+                                            </Group>
+                                            <Group spacing={2} noWrap mt={10}>
+                                                <Text fz="sm" c="dimmed">Cuisine:</Text>
+                                                <Text fz="sm">Indian,Bar,International</Text>
+                                            </Group>
+                                        </div>
+                                    </Group>
+                                </Paper>
+                            </Group>
+
+                        </Paper>
+                    </div>
+                })}
+
+
             </Flex>
 
 

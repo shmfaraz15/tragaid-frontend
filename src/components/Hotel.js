@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text, Paper, Flex, Title, Divider, ThemeIcon, Group, SimpleGrid, Spoiler, Rating } from '@mantine/core';
 import { IconAirConditioning, IconBathFilled, IconBowl, IconBrandAirtable, IconBrandUber, IconDeviceTv, IconGlass, IconMapPinFilled, IconParking, IconPhone, IconPool, IconSock, IconStarFilled, IconWorldUpload, IconYoga } from '@tabler/icons-react';
 import { Carousel } from "@mantine/carousel"
@@ -9,6 +9,7 @@ import {
     // useMantineTheme,
     rem
 } from "@mantine/core"
+import appcontext from '../context/Context';
 
 const useStyles = createStyles(theme => ({
     card: {
@@ -124,21 +125,12 @@ export function CardsCarousel() {
 
 
 export default function Hotel() {
+    const context = useContext(appcontext);
+    const { hotel } = context
     return (
         <Paper shadow="sm" p="md" withBorder >
             <Paper className="header_" shadow="sm" p="md" withBorder >
-                <Title order={1}>Courtyard by Marriott Bengaluru Hebbal</Title>
-                {/* <Flex
-                    // mih={50}
-                    bg="rgba(F,F,F)"
-                    gap="md"
-                    justify="flex-start"
-                    align="flex-start"
-                    direction="row"
-                    wrap="nowrap"
-                >
-                    
-                </Flex> */}
+                <Title order={1}>{hotel.name}</Title>
                 <Group>
                     < Flex
                         // mih={50}
@@ -150,7 +142,7 @@ export default function Hotel() {
                     // wrap="wrap"
                     >
                         <ThemeIcon variant="default" size="sm"><IconMapPinFilled /></ThemeIcon>
-                        <Text fz="sm" fw={100}>No 2/55 Outer Ring Road Nagavara, Bengaluru </Text>
+                        <Text fz="sm" fw={100}>{hotel.address} </Text>
                     </Flex>
                     <Divider orientation="vertical" />
                     <Flex
@@ -163,7 +155,7 @@ export default function Hotel() {
                     // wrap="wrap"
                     >
                         <ThemeIcon variant="default" size="sm"><IconPhone /></ThemeIcon>
-                        <Text fz="sm" fw={100}>084463 10595</Text>
+                        <Text fz="sm" fw={100}>{hotel.number}</Text>
                     </Flex>
                     <Divider orientation="vertical" />
                     <Flex
