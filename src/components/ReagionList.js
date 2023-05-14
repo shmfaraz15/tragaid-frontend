@@ -57,7 +57,7 @@ const useStyles = createStyles(theme => ({
 
 export function ArticlesCardsGrid() {
     const context = useContext(appcontext);
-    const { setRegion, region } = context
+    const { region } = context
     const { classes } = useStyles()
     let navigate = useNavigate()
 
