@@ -136,7 +136,7 @@ const useStyles1 = createStyles(theme => ({
 export function ArticlesCardsGrid(props) {
     const { classes } = useStyles1()
     const context = useContext(appcontext);
-    const { setPlace } = context
+    const { } = context
 
     let navigate = useNavigate()
 
@@ -257,7 +257,7 @@ export function HeroImageBackground() {
 
 export function Places() {
     const context = useContext(appcontext);
-    const { getPlacesOfRegion, region, places } = context
+    const { getPlacesOfRegion, places } = context
     // let string = ""
     // const placeList = async () => {
     //     console.log("places", places)

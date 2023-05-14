@@ -16,6 +16,11 @@ import Restaurant from './components/Restaurant';
 import ActivityList from './components/ActivityList';
 import Region from './components/Region';
 import ReagionList from './components/ReagionList';
+import { AdminLogin } from './components/AdminLogin';
+import { AdminDashboard } from './components/AdminDashboard';
+import { AddRegion } from './components/AddRegion';
+import { AddPlace } from './components/AddPlace';
+import { AddHotel } from './components/AddHotel';
 
 function App() {
   return (
@@ -38,6 +43,11 @@ function App() {
               <Route path='/activitylist' element={<ActivityList />} />
               <Route path='/region' element={<Region />} />
               <Route path='/regionlist' element={<ReagionList />} />
+              <Route path='/adminlogin' element={<AdminLogin />} />
+              <Route path='/admindashboard' element={<AdminDashboard />} />
+              <Route path='/addregion' element={<AddRegion />} />
+              <Route path='/addplace' element={<AddPlace />} />
+              <Route path='/addhotel' element={<AddHotel />} />
             </Routes>
           </BrowserRouter>
         </div>

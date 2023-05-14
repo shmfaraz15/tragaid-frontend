@@ -19,8 +19,8 @@ export default function Navbar() {
             icon: "fa-solid fa-circle-info"
         },
         {
-            title: "Service",
-            url: "/service",
+            title: "Admin Login",
+            url: "/adminlogin",
             cName: "nav-links",
             icon: "fa-solid fa-briefcase"
         },

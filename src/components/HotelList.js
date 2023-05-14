@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import {
     Title, Overlay, createStyles, rem, Rating, ThemeIcon, Anchor, ActionIcon
 } from '@mantine/core';
-import { IconExternalLink, IconMapPinShare, IconToolsKitchen } from '@tabler/icons-react';
+import { IconMapPinShare } from '@tabler/icons-react';
 import { Text, Paper, Flex, Divider, Group } from '@mantine/core';
 
 import { Carousel } from "@mantine/carousel"
