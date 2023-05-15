@@ -21,6 +21,9 @@ import { AdminDashboard } from './components/AdminDashboard';
 import { AddRegion } from './components/AddRegion';
 import { AddPlace } from './components/AddPlace';
 import { AddHotel } from './components/AddHotel';
+import { AddOffbeatPlace } from './components/AddOffbeatPlace';
+import { AddFood } from './components/AddFood';
+import { AddRestaurant } from './components/AddRestaurant';
 
 function App() {
   return (
@@ -48,6 +51,9 @@ function App() {
               <Route path='/addregion' element={<AddRegion />} />
               <Route path='/addplace' element={<AddPlace />} />
               <Route path='/addhotel' element={<AddHotel />} />
+              <Route path='/addoffbeatplace' element={<AddOffbeatPlace />} />
+              <Route path='/addfood' element={<AddFood />} />
+              <Route path='/addrestaurant' element={<AddRestaurant />} />
             </Routes>
           </BrowserRouter>
         </div>

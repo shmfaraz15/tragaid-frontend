@@ -1,13 +1,9 @@
 import {
     TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
+
     Paper,
     Title,
-    Text,
     Container,
-    Group,
     Button,
     AppShell,
     NativeSelect,
@@ -59,9 +55,10 @@ export function AddPlace() {
             setIsLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line
     }, [])
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(1);
 
     const [place, setPlace] = useState({
         "name": "Dharamshala",

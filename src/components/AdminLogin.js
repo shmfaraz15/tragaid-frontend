@@ -6,13 +6,11 @@ import {
     Checkbox,
     Button,
     Title,
-    Text,
-    Anchor,
     rem
 } from "@mantine/core"
-import { React, useContext, useState } from 'react'
+import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import appcontext from '../context/Context';
+// import appcontext from '../context/Context';
 
 
 const useStyles = createStyles(theme => ({
@@ -43,8 +41,8 @@ const useStyles = createStyles(theme => ({
 
 export function AdminLogin() {
     const { classes } = useStyles()
-    const context = useContext(appcontext);
-    const { } = context;
+    // const context = useContext(appcontext);
+    // const { } = context;
 
     let navigate = useNavigate();
 
@@ -77,7 +75,7 @@ export function AdminLogin() {
             localStorage.setItem('token', json.token);
             // getLoggedInDoctor(json.id);
             localStorage.setItem('id', json.id)
-            navigate("/admindashboard");
+            navigate("/addRegion");
         }
     }
 

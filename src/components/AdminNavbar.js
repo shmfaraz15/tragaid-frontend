@@ -10,9 +10,7 @@ import {
 import {
 
     IconLogout,
-    IconAddressBook,
     IconAlignBoxBottomCenterFilled,
-    IconInfoSquareRounded,
 } from "@tabler/icons-react"
 // import { MantineLogo } from "@mantine/ds"
 import { Link } from "react-router-dom"
@@ -89,13 +87,13 @@ const useStyles = createStyles(theme => ({
 
 const data = [
 
-    { link: "/admindashboard", label: "Dash Board", icon: IconAlignBoxBottomCenterFilled },
+
     { link: "/addregion", label: "Add Region", icon: IconAlignBoxBottomCenterFilled },
     { link: "/addplace", label: "Add Place", icon: IconAlignBoxBottomCenterFilled },
     { link: "/addhotel", label: "Add Hotel", icon: IconAlignBoxBottomCenterFilled },
-    // { link: "/hospitalhome", label: "Hospital Home", icon: IconAlignBoxBottomCenterFilled },
-
-    { link: "/admin/assigndoctor", label: "Assign Doctor", icon: IconAlignBoxBottomCenterFilled }
+    { link: "/addoffbeatplace", label: "Add OffbeatPlace", icon: IconAlignBoxBottomCenterFilled },
+    { link: "/addfood", label: "Add food", icon: IconAlignBoxBottomCenterFilled },
+    { link: "/addrestaurant", label: "Add Restaurant", icon: IconAlignBoxBottomCenterFilled }
 
 ]
 

@@ -232,8 +232,146 @@ const State = (props) => {
         setOffbeatPlaces(json)
     }
 
+    const addHotel = async (hotel, place_id) => {
+        const url = `${host}/admin/addAccommodation`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                "type": "Hotel",
+                "name": hotel.name,
+                "address": hotel.address,
+                "number": hotel.number,
+                "rate": hotel.rate,
+                "images": hotel.images,
+                "mapLocation": hotel.mapLocation,
+                "starRating": hotel.starRating,
+                "description": hotel.description,
+                "parking": hotel.parking,
+                "internet": hotel.internet,
+                "pool": hotel.pool,
+                "fitnessCenter": hotel.fitnessCenter,
+                "bar": hotel.bar,
+                "taxiService": hotel.taxiService,
+                "bathRobes": hotel.bathRobes,
+                "airConditioning": hotel.airConditioning,
+                "additionalBathroom": hotel.additionalBathroom,
+                "desk": hotel.desk,
+                "dinningArea": hotel.dinningArea,
+                "cable": hotel.cable,
+                "place": {
+                    "id": place_id
+                }
+            })
+
+        });
+        console.log("response:", response)
+        const json = await response.text();
+        console.log("json response:", json)
+
+    }
+
+    const addOffbeatPlace = async (offbeatPlace, place_id) => {
+        const url = `${host}/admin/addOffBeatPlace`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                "name": offbeatPlace.name,
+                "location": offbeatPlace.location,
+                "distance": parseInt(offbeatPlace.distance),
+                "byCarRoute": offbeatPlace.byCarRoute,
+                "byBusRoute": offbeatPlace.byBusRoute,
+                "images": offbeatPlace.images,
+                "place": {
+                    "id": place_id
+                }
+            })
+
+        });
+        console.log("response:", response)
+        const json = await response.text();
+        console.log("json response:", json)
+
+    }
+
+    const addFood = async (food, place_id) => {
+        const url = `${host}/admin/addFoodsForPlace`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                "foodName": food.foodName,
+                "details": "",
+                "images": offbeatPlace.images,
+                "place": {
+                    "id": place_id
+                }
+            })
+
+        });
+        console.log("response:", response)
+        const json = await response.text();
+        console.log("json response:", json)
+
+    }
+
+    const addRestaurant = async (restaurant, place_id) => {
+        const url = `${host}/admin/addRestaurantInAPlace`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                "name": restaurant.name,
+                "address": restaurant.address,
+                "noContactDelivery": restaurant.noContactDelivery,
+                "takeaway": restaurant.takeaway,
+                "dineIn": restaurant.dineIn,
+                "rate": restaurant.rate,
+                "type": restaurant.type,
+                "images": restaurant.images,
+                "starRating": restaurant.starRating,
+                "typeOfCuisines": restaurant.typeOfCuisines,
+                "menuLink": restaurant.menuLink,
+                "mapLocation": restaurant.mapLocation,
+                "phoneNo": restaurant.phoneNo,
+                "description": restaurant.description,
+                "specialDiets": restaurant.specialDiets,
+                "unlimited": restaurant.unlimited,
+                "kidsMenu": restaurant.kidsMenu,
+                "veganOptions": restaurant.veganOptions,
+                "vegetarianOptions": restaurant.vegetarianOptions,
+                "goodForKids": restaurant.goodForKids,
+                "highChairs": restaurant.highChairs,
+                "toilets": restaurant.toilets,
+                "freeWifi": restaurant.freeWifi,
+                "place": {
+                    "id": place_id
+                }
+
+            })
+
+        });
+        console.log("response:", response)
+        const json = await response.text();
+        console.log("json response:", json)
+
+    }
+
     return (
-        <Context.Provider value={{ link, setLink, region, setRegion, getPlacesOfRegion, places, setPlaces, hotels, setHotels, getHotels, place, setPlace, foods, setFoods, getFoods, restaurants, setRestaurants, getRestaurants, restaurant, setRestaurant, hotel, setHotel, offbeatPlaces, setOffbeatPlaces, getOffbeatPlaces, offbeatPlace, setOffbeatPlace, addRegion, regions, setRegions, getRegions, addPlace }}>
+        <Context.Provider value={{ link, setLink, region, setRegion, getPlacesOfRegion, places, setPlaces, hotels, setHotels, getHotels, place, setPlace, foods, setFoods, getFoods, restaurants, setRestaurants, getRestaurants, restaurant, setRestaurant, hotel, setHotel, offbeatPlaces, setOffbeatPlaces, getOffbeatPlaces, offbeatPlace, setOffbeatPlace, addRegion, regions, setRegions, getRegions, addPlace, addHotel, addOffbeatPlace, addFood, addRestaurant }}>
             {props.children}
         </Context.Provider>
     )

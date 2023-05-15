@@ -1,13 +1,9 @@
 import {
     TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
+
     Paper,
     Title,
-    Text,
     Container,
-    Group,
     Button,
     AppShell,
 } from '@mantine/core';
