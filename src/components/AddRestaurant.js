@@ -17,7 +17,7 @@ import { useContext, useEffect, useState } from 'react';
 
 export function AddRestaurant() {
     const context = useContext(appcontext);
-    const { addRestaurant, getRegions, getPlacesOfRegion, places } = context
+    const { addRestaurant, getRegions, getPlacesOfRegion } = context
     const [isLoading, setIsLoading] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true)
     const [data2, setData2] = useState([]);
@@ -38,6 +38,7 @@ export function AddRestaurant() {
             setIsLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line
     }, [])
 
     const [value, setValue] = useState(0);
@@ -77,6 +78,7 @@ export function AddRestaurant() {
 
         }
         fetchData();
+        // eslint-disable-next-line
     }, [value])
 
 

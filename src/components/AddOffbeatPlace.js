@@ -16,7 +16,7 @@ import { useContext, useEffect, useState } from 'react';
 
 export function AddOffbeatPlace() {
     const context = useContext(appcontext);
-    const { addOffbeatPlace, getRegions, getPlacesOfRegion, places } = context
+    const { addOffbeatPlace, getRegions, getPlacesOfRegion } = context
     const [isLoading, setIsLoading] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true)
     const [data2, setData2] = useState([]);
@@ -35,6 +35,7 @@ export function AddOffbeatPlace() {
             setIsLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line
     }, [])
 
     const [value, setValue] = useState();
@@ -73,6 +74,7 @@ export function AddOffbeatPlace() {
 
         }
         fetchData();
+        // eslint-disable-next-line
     }, [value])
 
 
