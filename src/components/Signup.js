@@ -85,6 +85,9 @@ export function Signup() {
                     placeholder="Your password"
                     required
                     mt="md"
+                    value={credentials.password}
+                    id="password" name="password"
+                    onChange={onChange}
                 />
                 <Button fullWidth mt="xl" onClick={submitHandler}>
                     Sign up

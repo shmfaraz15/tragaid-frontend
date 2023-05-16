@@ -85,6 +85,9 @@ export function AdminSignup() {
                     placeholder="Your password"
                     required
                     mt="md"
+                    id="password" name="password"
+                    value={credentials.password}
+                    onChange={onChange}
                 />
                 <Button fullWidth mt="xl" onClick={submitHandler}>
                     Sign up
