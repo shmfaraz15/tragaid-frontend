@@ -6,7 +6,9 @@ import {
     Checkbox,
     Button,
     Title,
-    rem
+    rem,
+    Text,
+    Anchor
 } from "@mantine/core"
 import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -114,16 +116,16 @@ export function AdminLogin() {
                     Login
                 </Button>
 
-                {/* <Text ta="center" mt="md">
-            Don&apos;t have an account?{" "}
-            <Anchor
-              href="/signup"
-              weight={700}
-            // onClick={event => event.preventDefault()}
-            >
-              Register
-            </Anchor>
-          </Text> */}
+                <Text ta="center" mt="md">
+                    Don&apos;t have an account?{" "}
+                    <Anchor
+                        href="/adminsignup"
+                        weight={700}
+                    // onClick={event => event.preventDefault()}
+                    >
+                        Register
+                    </Anchor>
+                </Text>
             </Paper>
         </div>
     )

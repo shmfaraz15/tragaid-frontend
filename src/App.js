@@ -24,6 +24,7 @@ import { AddHotel } from './components/AddHotel';
 import { AddOffbeatPlace } from './components/AddOffbeatPlace';
 import { AddFood } from './components/AddFood';
 import { AddRestaurant } from './components/AddRestaurant';
+import { AdminSignup } from './components/AdminSignup';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
               <Route path='/addoffbeatplace' element={<AddOffbeatPlace />} />
               <Route path='/addfood' element={<AddFood />} />
               <Route path='/addrestaurant' element={<AddRestaurant />} />
+              <Route path='/adminsignup' element={<AdminSignup />} />
             </Routes>
           </BrowserRouter>
         </div>

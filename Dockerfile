@@ -1,31 +1,26 @@
-# Dockerfile
-
 # Base image
-FROM node:latest
+FROM node:16-alpine
 
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the container
+# Copy dependency definitions
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code to the container
+# Copy the rest of the application code
 COPY . .
 
-# Build the app
+# Build the application
 RUN npm run build
 
-# Serve the app with nginx
-FROM nginx:latest
+# Set environment variable
+ENV PORT=3000
 
-# Copy the built React app to the nginx directory
-COPY --from=0 /app/build /usr/share/nginx/html
+# Expose port
+EXPOSE ${PORT}
 
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+CMD ["npm", "start"]
